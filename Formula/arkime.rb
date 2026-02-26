@@ -27,6 +27,9 @@ class Arkime < Formula
   def install
     system "autoreconf", "--verbose", "--install", "--force"
 
+    ENV["ARKIME_BUILD_FULL_VERSION"] = "v#{version}"
+    ENV["ARKIME_BUILD_DATE"] = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S%:z")
+
     glib2_cflags = `pkg-config --cflags gio-2.0 gobject-2.0 gthread-2.0 glib-2.0 gmodule-2.0`.chomp
     glib2_libs = `pkg-config --libs gio-2.0 gobject-2.0 gthread-2.0 glib-2.0 gmodule-2.0`.chomp
     lua_cflags = `pkg-config --cflags lua`.chomp
