@@ -9,6 +9,7 @@ class Arkime < Formula
   depends_on "automake" => :build
   depends_on "pkg-config" => :build
   depends_on "node@22" => :build
+  depends_on "wget" => :build
 
   depends_on "curl"
   depends_on "glib"
