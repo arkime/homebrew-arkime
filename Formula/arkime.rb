@@ -69,13 +69,6 @@ class Arkime < Formula
     (var/"log/arkime").mkpath
   end
 
-  service do
-    run [opt_bin/"capture", "-c", etc/"arkime/config.ini"]
-    keep_alive true
-    log_path var/"log/arkime/capture.log"
-    error_log_path var/"log/arkime/capture.error.log"
-  end
-
   test do
     assert_match version.to_s, shell_output("#{bin}/capture --version", 1)
   end
