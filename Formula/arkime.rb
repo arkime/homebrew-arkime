@@ -72,6 +72,13 @@ class Arkime < Formula
     (etc/"arkime").mkpath
     (var/"arkime/raw").mkpath
     (var/"log/arkime").mkpath
+
+    # Copy sample configs to /opt/homebrew/etc/arkime/ (survives upgrades)
+    %w[config.ini.sample wise.ini.sample cont3xt.ini.sample parliament.ini.sample].each do |sample|
+      src = prefix/"etc"/sample
+      dest = etc/"arkime"/sample.delete_suffix(".sample")
+      cp src, dest if src.exist? && !dest.exist?
+    end
   end
 
   test do
