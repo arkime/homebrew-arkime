@@ -40,17 +40,17 @@ class Arkime < Formula
       --with-nghttp2=yes
       --with-zstd=yes
       --with-glib2=no
-      GLIB2_CFLAGS=#{glib2_cflags}
-      GLIB2_LIBS=#{glib2_libs}
       --with-lua=no
-      LUA_CFLAGS=#{lua_cflags}
-      LUA_LIBS=#{lua_libs}
       --with-pfring=no
       --with-kafka=no
-      KAFKA_CFLAGS=-I#{Formula["librdkafka"].opt_include}/librdkafka
-      KAFKA_LIBS=-L#{Formula["librdkafka"].opt_lib} -lrdkafka
       --without-python
     ]
+    args << "GLIB2_CFLAGS=#{glib2_cflags}"
+    args << "GLIB2_LIBS=#{glib2_libs}"
+    args << "LUA_CFLAGS=#{lua_cflags}"
+    args << "LUA_LIBS=#{lua_libs}"
+    args << "KAFKA_CFLAGS=-I#{Formula["librdkafka"].opt_include}/librdkafka"
+    args << "KAFKA_LIBS=-L#{Formula["librdkafka"].opt_lib} -lrdkafka"
 
     system "./configure", *args
     system "make"
