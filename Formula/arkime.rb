@@ -26,13 +26,10 @@ class Arkime < Formula
   def install
     system "autoreconf", "--verbose", "--install", "--force"
 
-    glib = Formula["glib"]
-    lua = Formula["lua"]
-
-    ENV.append "GLIB2_CFLAGS", `pkg-config --cflags glib-2.0`.chomp
-    ENV.append "GLIB2_LIBS", `pkg-config --libs glib-2.0`.chomp
-    ENV.append "LUA_CFLAGS", `pkg-config --cflags lua`.chomp
-    ENV.append "LUA_LIBS", `pkg-config --libs lua`.chomp
+    glib2_cflags = `pkg-config --cflags gio-2.0 gobject-2.0 gthread-2.0 glib-2.0 gmodule-2.0`.chomp
+    glib2_libs = `pkg-config --libs gio-2.0 gobject-2.0 gthread-2.0 glib-2.0 gmodule-2.0`.chomp
+    lua_cflags = `pkg-config --cflags lua`.chomp
+    lua_libs = `pkg-config --libs lua`.chomp
 
     args = %W[
       --prefix=#{prefix}
@@ -43,14 +40,17 @@ class Arkime < Formula
       --with-nghttp2=yes
       --with-zstd=yes
       --with-glib2=no
+      GLIB2_CFLAGS=#{glib2_cflags}
+      GLIB2_LIBS=#{glib2_libs}
       --with-lua=no
+      LUA_CFLAGS=#{lua_cflags}
+      LUA_LIBS=#{lua_libs}
       --with-pfring=no
       --with-kafka=no
+      KAFKA_CFLAGS=-I#{Formula["librdkafka"].opt_include}/librdkafka
+      KAFKA_LIBS=-L#{Formula["librdkafka"].opt_lib} -lrdkafka
       --without-python
     ]
-
-    ENV.append "KAFKA_CFLAGS", "-I#{Formula["librdkafka"].opt_include}"
-    ENV.append "KAFKA_LIBS", "-L#{Formula["librdkafka"].opt_lib} -lrdkafka"
 
     system "./configure", *args
     system "make"
