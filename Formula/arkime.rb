@@ -5,6 +5,11 @@ class Arkime < Formula
   sha256 "2aac4c36aaa55a9955dbc6c6d311877b9e93cbc115e4379208056cae9fa7d84f"
   license "Apache-2.0"
 
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "pkg-config" => :build
