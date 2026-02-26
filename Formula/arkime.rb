@@ -61,16 +61,6 @@ class Arkime < Formula
     system "./configure", *args
     system "make"
     system "make", "install"
-
-    # Install Node.js services
-    %w[viewer wiseService cont3xt parliament].each do |svc|
-      next unless (buildpath/svc).exist?
-
-      cp_r buildpath/svc, prefix/svc
-      cd prefix/svc do
-        system "npm", "ci", "--production", "--ignore-scripts" if (prefix/svc/"package.json").exist?
-      end
-    end
   end
 
   def post_install
