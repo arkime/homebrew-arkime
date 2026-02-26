@@ -24,6 +24,8 @@ class Arkime < Formula
   depends_on "yara"
   depends_on "zstd"
 
+  keg_only "arkime is not intended to be linked into the Homebrew prefix"
+
   def install
     system "autoreconf", "--verbose", "--install", "--force"
 
