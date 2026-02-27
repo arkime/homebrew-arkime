@@ -19,6 +19,8 @@ If you've never initialized the Arkime database before, run:
 /opt/homebrew/opt/arkime/db/db.pl http://localhost:9200 init
 ```
 
+Next, update the [configuration files](#configuration) — at minimum, set `ARKIME_INTERFACE` and `ARKIME_PASSWORD` in `config.ini`.
+
 To add your first admin user:
 
 ```bash
