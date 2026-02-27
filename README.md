@@ -9,10 +9,14 @@ brew tap arkime/arkime
 brew install arkime/arkime/arkime
 ```
 
-Arkime is installed as keg-only and won't link into `/opt/homebrew/bin`. The install lives at:
+Arkime is installed as keg-only. Use the service formulas below to run Arkime components.
 
-```
-/opt/homebrew/opt/arkime/
+## Initial Setup
+
+If you've never initialized the Arkime database before, run:
+
+```bash
+/opt/homebrew/opt/arkime/db/db.pl http://localhost:9200 init
 ```
 
 ## Services
