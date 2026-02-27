@@ -77,8 +77,26 @@ class Arkime < Formula
     %w[config.ini.sample wise.ini.sample cont3xt.ini.sample parliament.ini.sample].each do |sample|
       src = prefix/"etc"/sample
       dest = etc/"arkime"/sample.delete_suffix(".sample")
-      cp src, dest if src.exist? && !dest.exist?
+      if src.exist? && !dest.exist?
+        cp src, dest
+        inreplace dest, "ARKIME_INSTALL_DIR/etc", etc/"arkime", audit_result: false
+        inreplace dest, "ARKIME_INSTALL_DIR/logs", var/"log/arkime", audit_result: false
+        inreplace dest, "ARKIME_INSTALL_DIR/raw", var/"arkime/raw", audit_result: false
+        inreplace dest, "ARKIME_INSTALL_DIR/cont3xt-cache", var/"arkime/cont3xt-cache", audit_result: false
+        inreplace dest, "ARKIME_INSTALL_DIR/bin", prefix/"bin", audit_result: false
+        inreplace dest, "ARKIME_INSTALL_DIR/parsers", prefix/"parsers", audit_result: false
+        inreplace dest, "ARKIME_INSTALL_DIR/plugins", prefix/"plugins", audit_result: false
+        inreplace dest, "ARKIME_ELASTICSEARCH", "http://localhost:9200", audit_result: false
+        inreplace dest, /^#geoLite2Country=.*/, "geoLite2Country=#{var}/GeoIP/GeoLite2-City.mmdb", audit_result: false
+        inreplace dest, /^#geoLite2ASN=.*/, "geoLite2ASN=#{var}/GeoIP/GeoLite2-ASN.mmdb", audit_result: false
+      end
     end
+
+    # Fix DEST_DIR in arkime_update_geo.sh to point to etc/arkime
+    geo_script = bin/"arkime_update_geo.sh"
+    inreplace geo_script, /DEST_DIR=.*/, "DEST_DIR=\"#{etc}/arkime\"" if geo_script.exist?
+
+    system geo_script
   end
 
   test do
