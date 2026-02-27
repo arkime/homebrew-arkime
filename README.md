@@ -19,6 +19,12 @@ If you've never initialized the Arkime database before, run:
 /opt/homebrew/opt/arkime/db/db.pl http://localhost:9200 init
 ```
 
+To add your first admin user:
+
+```bash
+/opt/homebrew/opt/arkime/bin/arkime_add_user.sh admin admin admin --admin
+```
+
 ## Services
 
 Each Arkime component has its own service formula that you can install and enable independently:
@@ -47,6 +53,8 @@ brew services list
 ```
 
 ## Configuration
+
+> **⚠️ Important:** You **must** update `ARKIME_INTERFACE` and `ARKIME_PASSWORD` in the configuration files before using Arkime. Edit `/opt/homebrew/etc/arkime/config.ini` and replace the placeholder values with your network interface and desired password.
 
 Config files live in `/opt/homebrew/etc/arkime/`:
 

@@ -75,6 +75,7 @@ class Arkime < Formula
     (var/"log/arkime").mkpath
 
     # Copy sample configs to /opt/homebrew/etc/arkime/ (survives upgrades)
+    first_install = !(etc/"arkime/config.ini").exist?
     %w[config.ini.sample wise.ini.sample cont3xt.ini.sample parliament.ini.sample].each do |sample|
       src = prefix/"etc"/sample
       dest = etc/"arkime"/sample.delete_suffix(".sample")
@@ -93,6 +94,12 @@ class Arkime < Formula
       end
     end
 
+    # Fix config path in arkime_add_user.sh
+    add_user_script = bin/"arkime_add_user.sh"
+    if add_user_script.exist?
+      inreplace add_user_script, %r{/opt/homebrew/Cellar/arkime/[^/]+/etc/}, "#{etc}/arkime/"
+    end
+
     # Fix DEST_DIR in arkime_update_geo.sh to point to etc/arkime
     geo_script = bin/"arkime_update_geo.sh"
     if geo_script.exist?
@@ -101,6 +108,12 @@ class Arkime < Formula
     end
 
     system geo_script
+
+    if first_install
+      ohai "To add your first admin user, run:"
+      ohai "  #{opt_bin}/arkime_add_user.sh admin admin admin --admin"
+      opoo "You MUST update ARKIME_INTERFACE and ARKIME_PASSWORD in #{etc}/arkime/config.ini before using Arkime."
+    end
   end
 
   test do
