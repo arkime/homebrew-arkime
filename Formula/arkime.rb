@@ -17,6 +17,7 @@ class Arkime < Formula
   depends_on "wget" => :build
 
   depends_on "curl"
+  depends_on "geoipupdate"
   depends_on "glib"
   depends_on "libmaxminddb"
   depends_on "libpcap"
@@ -94,7 +95,10 @@ class Arkime < Formula
 
     # Fix DEST_DIR in arkime_update_geo.sh to point to etc/arkime
     geo_script = bin/"arkime_update_geo.sh"
-    inreplace geo_script, /DEST_DIR=.*/, "DEST_DIR=\"#{etc}/arkime\"" if geo_script.exist?
+    if geo_script.exist?
+      inreplace geo_script, /DEST_DIR=.*/, "DEST_DIR=\"#{etc}/arkime\""
+      inreplace geo_script, /geoipupdate/, "/opt/homebrew/bin/geoipupdate"
+    end
 
     system geo_script
   end
