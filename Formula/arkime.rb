@@ -81,7 +81,7 @@ class Arkime < Formula
     %w[config.ini.sample wise.ini.sample cont3xt.ini.sample parliament.ini.sample].each do |sample|
       src = prefix/"etc"/sample
       dest = etc/"arkime"/sample.delete_suffix(".sample")
-      next unless src.exist? && !dest.exist?
+      next if !src.exist? || dest.exist?
 
       cp src, dest
       inreplace dest, "ARKIME_INSTALL_DIR/etc", etc/"arkime", audit_result: false
