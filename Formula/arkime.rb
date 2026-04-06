@@ -1,8 +1,8 @@
 class Arkime < Formula
   desc "Full packet capture, indexing, and database system"
   homepage "https://arkime.com"
-  url "https://github.com/arkime/arkime/archive/refs/tags/v6.1.0.tar.gz"
-  sha256 "db2f4ae2b89ba3048fafd82814fb1e1c3343acb4b217cb5e573dc038e474a909"
+  url "https://github.com/arkime/arkime/archive/refs/tags/v6.1.1.tar.gz"
+  sha256 "5350fbe9810d02ca082dff0e0be553e83d2a85500c9aaf963b45a9e025d33a5c"
   license "Apache-2.0"
 
   livecheck do
