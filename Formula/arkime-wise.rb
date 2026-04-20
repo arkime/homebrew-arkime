@@ -1,8 +1,8 @@
 class ArkimeWise < Formula
   desc "Service wrapper for Arkime WISE"
   homepage "https://arkime.com"
-  url "https://github.com/arkime/arkime/archive/refs/tags/v6.1.1.tar.gz"
-  sha256 "5350fbe9810d02ca082dff0e0be553e83d2a85500c9aaf963b45a9e025d33a5c"
+  url "https://github.com/arkime/arkime/archive/refs/tags/v6.2.0.tar.gz"
+  sha256 "044ee248230550ed4a6500ba6496e7a61a3b0b78e3fe63dfaf39fb508a666ad3"
   license "Apache-2.0"
 
   depends_on "arkime/arkime/arkime"
