@@ -1,8 +1,8 @@
 class ArkimeViewer < Formula
   desc "Service wrapper for Arkime Viewer"
   homepage "https://arkime.com"
-  url "https://github.com/arkime/arkime/archive/refs/tags/v6.3.0.tar.gz"
-  sha256 "5f6dfb3723db8725105395a49d9bb5133aefbe1b6165460b07a34ca975036790"
+  url "https://github.com/arkime/arkime/archive/refs/tags/v6.3.1.tar.gz"
+  sha256 "fa3b27adce7e2a5367dc0a0d3899059e54ee3cfdce643559fd9516d069bc7b1b"
   license "Apache-2.0"
 
   depends_on "arkime/arkime/arkime"
