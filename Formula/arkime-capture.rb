@@ -1,8 +1,8 @@
 class ArkimeCapture < Formula
   desc "Service wrapper for Arkime packet capture"
   homepage "https://arkime.com"
-  url "https://github.com/arkime/arkime/archive/refs/tags/v6.4.0.tar.gz"
-  sha256 "2b8653a8e5cb47f86f192eb144ff0ef35b113a974fd90d5e7fce11abfe300c96"
+  url "https://github.com/arkime/arkime/archive/refs/tags/v6.6.0.tar.gz"
+  sha256 "fd6e579f45d4f774a4e214c7518453500b47aa9826399c0f1bd8cc73bb3c5dfa"
   license "Apache-2.0"
 
   depends_on "arkime/arkime/arkime"
