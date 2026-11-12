@@ -1,8 +1,8 @@
 class ArkimeParliament < Formula
   desc "Service wrapper for Arkime Parliament"
   homepage "https://arkime.com"
-  url "https://github.com/arkime/arkime/archive/refs/tags/v6.9.0.tar.gz"
-  sha256 "110c63edf84951becd30819c0b69a0ba00070b84aa533d0bb2d4d7f963236c2f"
+  url "https://github.com/arkime/arkime/archive/refs/tags/v6.9.2.tar.gz"
+  sha256 "c75aff52d67525b5d265c740ae0c6360423fe0facaba5a54e0fdcaef853f406d"
   license "Apache-2.0"
 
   depends_on "arkime/arkime/arkime"
